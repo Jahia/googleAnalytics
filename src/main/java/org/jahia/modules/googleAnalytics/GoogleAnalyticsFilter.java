@@ -45,6 +45,7 @@ package org.jahia.modules.googleAnalytics;
 
 import net.htmlparser.jericho.*;
 import org.apache.commons.lang.StringUtils;
+import org.jahia.services.content.decorator.JCRSiteNode;
 import org.jahia.services.render.RenderContext;
 import org.jahia.services.render.Resource;
 import org.jahia.services.render.filter.AbstractFilter;
@@ -75,6 +76,9 @@ import java.util.List;
  */
 public class GoogleAnalyticsFilter extends AbstractFilter implements ApplicationListener<ApplicationEvent> {
 
+    private static final Long DEFAULT_COOKIE_EXPIRES = 60L * 60L * 24L * 365L;
+    private static final String COOKIE_EXPIRES = "cookieExpires";
+
     private static Logger logger = LoggerFactory.getLogger(GoogleAnalyticsFilter.class);
 
     private ScriptEngineUtils scriptEngineUtils;
@@ -86,7 +90,8 @@ public class GoogleAnalyticsFilter extends AbstractFilter implements Application
     @Override
     public String execute(String previousOut, RenderContext renderContext, Resource resource, RenderChain chain) throws Exception {
         String out = previousOut;
-        String webPropertyID = renderContext.getSite().hasProperty("webPropertyID") ? renderContext.getSite().getProperty("webPropertyID").getString() : null;
+        JCRSiteNode site = renderContext.getSite();
+        String webPropertyID = site.hasProperty("webPropertyID") ? site.getProperty("webPropertyID").getString() : null;
         if (StringUtils.isNotEmpty(webPropertyID)) {
             String script = getResolvedTemplate();
             if (script != null) {
@@ -100,6 +105,7 @@ public class GoogleAnalyticsFilter extends AbstractFilter implements Application
                     ScriptContext scriptContext = new GoogleScriptContext();
                     final Bindings bindings = scriptEngine.createBindings();
                     bindings.put("webPropertyID", webPropertyID);
+                    bindings.put(COOKIE_EXPIRES, site.hasProperty(COOKIE_EXPIRES) ? site.getProperty(COOKIE_EXPIRES).getLong() : DEFAULT_COOKIE_EXPIRES);
                     String url = resource.getNode().getUrl();
                     if (renderContext.getRequest().getAttribute("analytics-path") != null) {
                         url = (String) renderContext.getRequest().getAttribute("analytics-path");

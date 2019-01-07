@@ -5,6 +5,6 @@
  extends=jnt:virtualsite
  itemtype=options
  - webPropertyID (string) nofulltext
-
+ - cookieExpires (long) = 31536000 indexed=no
 
 [jnt:googleAnalyticsBind] > jnt:content, jmix:bindedComponent, jmix:siteComponent, jmix:studioOnly
