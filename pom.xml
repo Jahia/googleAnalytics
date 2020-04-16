@@ -49,10 +49,10 @@
   <parent>
     <groupId>org.jahia.modules</groupId>
     <artifactId>jahia-modules</artifactId>
-    <version>7.0.0.0</version>
+    <version>7.5.0.0-SNAPSHOT</version>
   </parent>
   <artifactId>googleAnalytics</artifactId>
-  <version>2.0.5-SNAPSHOT</version>
+  <version>3.0.0-SNAPSHOT</version>
   <packaging>bundle</packaging>
   <name>Jahia Google Analytics</name>
   <description>These are the custom module (Jahia Google Analytics) for running on a Jahia server.</description>
@@ -62,6 +62,12 @@
     <url>scm:git:git@github.com:Jahia/googleAnalytics.git</url>
     <tag>HEAD</tag>
   </scm>
+
+  <properties>
+    <jahia-module-signature>MCwCFHCAK7JtfPW7LBFaKdmCAIN9AEiMAhQBaIfKbsv5ubFbPnXmubwdAQUjQg==</jahia-module-signature>
+    <require-capability>osgi.extender;filter:="(osgi.extender=org.jahia.bundles.blueprint.extender.config)"</require-capability>
+  </properties>
+
   <repositories>
     <repository>
       <releases>
