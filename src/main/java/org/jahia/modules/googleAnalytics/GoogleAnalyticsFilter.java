@@ -106,11 +106,6 @@ public class GoogleAnalyticsFilter extends AbstractFilter implements Application
                     final Bindings bindings = scriptEngine.createBindings();
                     bindings.put("webPropertyID", webPropertyID);
                     bindings.put(COOKIE_EXPIRES, site.hasProperty(COOKIE_EXPIRES) ? site.getProperty(COOKIE_EXPIRES).getLong() : DEFAULT_COOKIE_EXPIRES);
-                    String url = resource.getNode().getUrl();
-                    if (renderContext.getRequest().getAttribute("analytics-path") != null) {
-                        url = (String) renderContext.getRequest().getAttribute("analytics-path");
-                    }
-                    bindings.put("resourceUrl", url);
                     bindings.put("resource", resource);
                     bindings.put("gaMap",renderContext.getRequest().getAttribute("gaMap"));
                     scriptContext.setBindings(bindings, ScriptContext.GLOBAL_SCOPE);
