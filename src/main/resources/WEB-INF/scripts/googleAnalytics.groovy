@@ -5,7 +5,7 @@ println("<script>\n" +
         "})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');\n" +
         "\n" +
         "ga('create', '${webPropertyID}', {'cookieExpires': ${cookieExpires}});\n" +
-        "ga('send', 'pageview','${resourceUrl}');\n" +
+        "ga('send', 'pageview', location.pathname);\n" +
         "\n")
 gaMap.each {
     entry-> println("ga('send', 'pageview','${entry.value}');\n")
