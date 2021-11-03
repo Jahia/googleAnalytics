@@ -71,7 +71,7 @@ parameters:
     default: false
   SSH_KEY_FINGERPRINT:
     type: string
-    default: "eb:6a:7b:9e:e8:9f:5d:64:2a:d3:a3:da:04:0b:7d:6a"
+    default: "02:de:e0:71:2f:05:03:0b:54:95:7c:ba:a9:af:6e:0f"
 
 workflows:
   version: 2
