@@ -5,11 +5,15 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
+    # Prevent dependabot from opening PRs
+    open-pull-requests-limit: 0
     allow:
-      - dependency-type: "production"
+      - dependency-type: "production" 
   - package-ecosystem: "maven"
     directory: "/"
     schedule:
       interval: "daily"
+    # Prevent dependabot from opening PRs
+    open-pull-requests-limit: 0       
     allow:
       - dependency-type: "production"
